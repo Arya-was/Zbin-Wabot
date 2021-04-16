@@ -197,7 +197,7 @@ async function starts() {
   const args = body.trim().split(/ +/).slice(1)
   const isCmd = body.startsWith(prefix)
   const botNumber = client.user.jid
-  const ownerNumber = ["6285230467582@s.whatsapp.net","62815150192843@s.whatsapp.net","6282331218665@s.whatsapp.net","6282145024224@s.whatsapp.net","6285807107404@s.whatsapp.net","62895343001883@s.whatsapp.net","6281216654518@s.whatsapp.net","6283128671683@s.whatsapp.net"]
+  const ownerNumber = ["62895331406727@s.whatsapp.net","6285230467582@s.whatsapp.net","62815150192843@s.whatsapp.net","6282331218665@s.whatsapp.net","6282145024224@s.whatsapp.net","6285807107404@s.whatsapp.net","62895343001883@s.whatsapp.net","6281216654518@s.whatsapp.net","6283128671683@s.whatsapp.net"]
   const arya = ["6289610916999@s.whatsapp.net"]
 	const isGroup = from.endsWith('@g.us')
 	const sender = isGroup ? msg.participant : msg.key.remoteJid
@@ -322,16 +322,18 @@ switch(command) {
 case 'help':
 case 'menu':
 case 'bantuan':
-if (isGroup) return reply('bot tidak bisa melayani privat chat!')
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 reply(help(prefix, copid, tanggal, jams, botname))
 break
 case 'bugreport':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply(`Ketik ${prefix}bugreport [fiturnya] [Error Nya Gimana]`) 
 teks = args.join(' ')
 reply('Terima Kasih Telah Melaporkan Bug Pada Owner, Jika Itu Sekedar Iseng Maka Akan Di Ban Oleh Bot!')
 client.sendMessage('62815150192843@s.whatsapp.net',`*Bug Report:* ${teks}`, text)
 break
 case 'wiki':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply(' Yang Mau Di Cari Apa? ')
 teks = args.join(' ')
 res = await wikiSearch(teks).catch(e => {
@@ -362,6 +364,7 @@ reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
 }
 break
 case 'banchat':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (!isOwner) return 
 if (args.length < 1) return reply('hmm')
 if (body.endsWith('true')) {
@@ -378,6 +381,7 @@ reply(`Ketik ${prefix}banchat true Untuk Mengaktifkan dan false untung Menonakti
 }
 break
 case 'modesimi':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('hmm')
 if (Number(args[0]) === 1) {
 if (isAntiLink) return reply('Mode Simi sudah aktif')
@@ -448,12 +452,14 @@ let LANGUAGES = `
 reply(`${LANGUAGES}`)
 break
 case 'restart':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (!isOwner) return
 reply(mess.wait)
 exec(`node main`)
 reply('_Restarting Bot Success_')
 break
 case 'mediafire':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Link Nya Mana? ')
 if(!isUrl(args[0]) && !args[0].includes('mediafire')) return reply(mess.error.Iv)
 reply(mess.wait)
@@ -469,6 +475,7 @@ reply(result)
 sendFileFromUrl(res[0].link, document, {mimetype: res[0].mime, filename: res[0].nama, quoted: msg})
 break
 case 'dafontdown':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Link Nya Mana? ')
 if(!isUrl(args[0]) && !args[0].includes('dafont')) return reply(mess.error.Iv)
 teks = args.join(' ')
@@ -483,6 +490,7 @@ sendFileFromUrl(res[0].down, document, {mimetype: 'font/ttf', filename: res[0].o
 break
 case 'dafontsearch':
 case 'dafonts':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Apa Yang Mau Di Cari? ')
 teks = args.join(' ')
 reply(mess.wait)
@@ -496,6 +504,7 @@ result = `❒「  *${botname}*  」
 reply(result)
 break
 case 'blocklist':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 teks = 'This is list of blocked number :\n'
 for (let block of blocked) {
 teks += `~> @${block.split('@')[0]}\n`
@@ -505,6 +514,7 @@ client.sendMessage(from, teks.trim(), extendedText, {quoted: msg, contextInfo: {
 break
 case 'pinterest':
 case 'pin':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Apa Yang Mau Dicari?')
 reply(mess.wait)
 teks = args.join(' ')
@@ -515,6 +525,8 @@ sendFileFromUrl(random, image, {quoted: msg, caption: `*Hasil Pencarian Dari :* 
 break
 case 'gimage':
 case 'googleimage':
+case 'image':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Apa Yang Mau Dicari?')
 reply(mess.wait)
 teks = args.join(' ')
@@ -531,6 +543,7 @@ break
 case 'google':
 case 'googlesearch':
 case 'ggs':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Yang mau di cari apaan?')
 teks = args.join(' ')
 reply(mess.wait)
@@ -550,6 +563,7 @@ reply(akhir)
 break
 break
 case 'ocr':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if ((isMedia && !msg.message.videoMessage || isTagedImage) && args.length == 0) {
 const encmedia = isTagedImage ? JSON.parse(JSON.stringify(msg).replace('quotedM','m')).message.extendedTextMessage.contextInfo : msg
 const media = await client.downloadAndSaveMediaMessage(encmedia)
@@ -568,7 +582,8 @@ break
 case 's':
 case 'stiker':
 case 'sticker':
-reply(mess.wait)
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
+//reply(mess.wait)
 if ((isMedia && !msg.message.videoMessage || isTagedImage) && args.length == 0) {
 const encmedia = isTagedImage ? JSON.parse(JSON.stringify(msg).replace('quotedM','m')).message.extendedTextMessage.contextInfo : msg
 const media = await client.downloadAndSaveMediaMessage(encmedia)
@@ -663,6 +678,7 @@ client.sendMessage(from, stik, sticker, {contexInfo: {mentionedJid: jids}, quote
 break
 case 'facebook':
 case 'fb':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Link Nya Mana? ')
 if(!isUrl(args[0]) && !args[0].includes('facebook')) return reply(mess.error.Iv)
 teks = args.join(' ')
@@ -683,6 +699,7 @@ sendFileFromUrl(a.thumb, image, {caption: result, quoted: msg})
 sendFileFromUrl(a.link, video, { mimetype: 'video/mp4',quoted: msg, filename: `${a.judul}.${a.type}`})
 break
 case 'ytmp3':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Link Nya Mana?')
 if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
 teks = args.join(' ')
@@ -704,6 +721,7 @@ sendFileFromUrl(res[0].link, document, {quoted: msg, mimetype: 'audio/mp3', file
 })
 break
 case 'ytmp4':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Link Nya Mana?')
 if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
 teks = args.join(' ')
@@ -726,6 +744,7 @@ sendFileFromUrl(res[0].link, video, {quoted: msg, mimetype: 'video/mp4', filenam
 break
 case 'ig':
 case 'instagram':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Link Yang Mana? ')
 if(!isUrl(args[0]) && !args[0].includes('instagram')) return reply(mess.error.Iv)
 teks = args.join(' ')
@@ -747,6 +766,7 @@ sendFileFromUrl(res[0].video, video, {mimetype: 'video/mp4', quoted: msg})
 }
 break
 case 'play':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Apa Yang Mau Dicari?')
 teks = args.join(' ')
 reply(mess.wait)
@@ -800,6 +820,7 @@ case 'jagokata':
 case 'quote':
 case 'quotes':
 case 'katamutiara':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Yang mau di cari apaan?')
 teks = args.join(' ')
 res = await jagoKata(teks)
@@ -809,6 +830,7 @@ reply(hasil)
 break
 case 'yts':
 case 'ytsearch':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Yang mau di cari apaan?')
 teks = args.join(' ')
 reply(mess.wait)
@@ -833,6 +855,7 @@ sendFileFromUrl(res.all[0].image, image, {quoted: msg, caption: akhir})
 break
 case 'nulis':
 case 'tulis':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Yang mau di tulis apaan?')
 teks = args.join(' ')
 reply(mess.wait)
@@ -1059,19 +1082,19 @@ client.groupLeave(from)
  }
  break
  case 'joox':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
  if (args.length < 1) return reply('Lagu Yang Dicari Nya Apa? ')
  teks = args.join(' ')
- axios.get(`https://tobz-api.herokuapp.com/api/joox?q=${teks}&apikey=BotWeA`).then((res) => {
+ axios.get(`https://api.zeks.xyz/api/joox?apikey=apivinz&q=${teks}`).then((res) => {
  if (res.data.error) return reply(res.data.error) 
  if (!res.data.error) reply(`Ditemukan!!`) 
- let hasil = `*Judul:* ${res.data.result.judul} - ${res.data.result.album}
-*Album:* ${res.data.result.album}
-*Artis:* ${res.data.result.judul}
-*Di Upload Pada:* ${res.data.result.dipublikasi}
+ let hasil = `*Judul:* ${res.data.data[0].judul} - ${res.data.data[0].album}
+*Album:* ${res.data.data[0].album}
+*Artis:* ${res.data.data[0].judul}
 
 *_Tunggu Proses Upload......._*`
-client.sendMessage(from, { url : res.data.result.thumb }, image, {quoted: msg, caption: hasil})
-client.sendMessage(from, { url : res.data.result.mp3 }, document, {mimetype: 'audio/mp3', filename: `${res.data.result.judul} - ${res.data.result.album}.mp3`,quoted: msg})
+client.sendMessage(from, { url : res.data.data[0].thumb }, image, {quoted: msg, caption: hasil})
+client.sendMessage(from, { url : res.data.data[0].audio }, document, {mimetype: 'audio/mp3', filename: `${res.data.data[0].judul} - ${res.data.data[0].album}.mp3`,quoted: msg})
 })
 break
 case 'tomp3':
