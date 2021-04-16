@@ -322,6 +322,7 @@ switch(command) {
 case 'help':
 case 'menu':
 case 'bantuan':
+if (!isGroupMsg) return reply('bot tidak bisa melayani privat chat!')
 reply(help(prefix, copid, tanggal, jams, botname))
 break
 case 'bugreport':
