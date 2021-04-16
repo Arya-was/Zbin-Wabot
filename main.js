@@ -816,6 +816,57 @@ reply('_[ ! ] Error Saat Memasuki Web Y2mate_')
 sendFileFromUrl(res[0].link, document, {quoted: msg, mimetype: 'audio/mp3', filename: res[0].output})
 }
 break
+case 'ytvideo': //recode nya udah izin asw
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
+if (args.length < 1) return reply('Apa Yang Mau Dicari?')
+teks = args.join(' ')
+reply(mess.wait)
+if (!teks.endsWith("-doc")){
+res = await yts(`${teks}`).catch(e => {
+reply('_[ ! ] Error Query Yang Anda Masukan Tidak Ada_')
+})
+//reply(`.•♫•♬• Playing ${res.all[0].title} •♬•♫•.`)
+let thumbInfo = `❒「  *Youtube Search*  」
+├ *Judul :* ${res.all[0].title}
+├ *ID Video :* ${res.all[0].videoId}
+├ *Diupload Pada :* ${res.all[0].ago}
+├ *Views :* ${res.all[0].views}
+├ *Durasi :* ${res.all[0].timestamp}
+├ *Channel :* ${res.all[0].author.name}
+└ *Link Channel :* ${res.all[0].author.url}
+
+*_Tunggu Proses Upload....._*
+`
+sendFileFromUrl(res.all[0].image, image, {quoted: msg, caption: thumbInfo})
+res = await y2mateV(res.all[0].url).catch(e => {
+reply('_[ ! ] Error Saat Memasuki Web Y2mate_')
+})
+sendFileFromUrl(res[0].link, video, {quoted: msg, mimetype: 'video/mp4', filename: res[0].output})
+}
+if (teks.endsWith("-doc")){
+const tec = teks.split("-doc")
+res = await yts(`${tec}`).catch(e => {
+reply('_[ ! ] Error Query Yang Anda Masukan Tidak Ada_')
+})
+//reply(`.•♫•♬• Playing ${res.all[0].title} •♬•♫•.`)
+let thumbInfo = `❒「  *${botname}*  」
+├ *Judul :* ${res.all[0].title}
+├ *ID Video :* ${res.all[0].videoId}
+├ *Diupload Pada :* ${res.all[0].ago}
+├ *Views :* ${res.all[0].views}
+├ *Durasi :* ${res.all[0].timestamp}
+├ *Channel :* ${res.all[0].author.name}
+└ *Link Channel :* ${res.all[0].author.url}
+
+*_Tunggu Proses Upload....._*
+`
+sendFileFromUrl(res.all[0].image, image, {quoted: msg, caption: thumbInfo})
+res = await y2mateV(res.all[0].url).catch(e => {
+reply('_[ ! ] Error Saat Memasuki Web Y2mate_')
+})
+sendFileFromUrl(res[0].link, document, {quoted: msg, mimetype: 'video/mp4', filename: res[0].output})
+}
+break
 case 'jagokata':
 case 'quote':
 case 'quotes':
