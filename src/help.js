@@ -46,6 +46,7 @@ const help = (prefix, copid, tanggal, jams, botname) => {
 ├ *${prefix}soundcloud* [Url]
 ├ *${prefix}pinterest* [Query]
 ├ *${prefix}play* [Query] [Options]
+├ *${prefix}ytvideo* [Query] [Options]
 └ *${prefix}joox* [Query]
 
 ❑ *Searching*
