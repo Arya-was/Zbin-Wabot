@@ -57,6 +57,8 @@ const help = (prefix, copid, tanggal, jams, botname) => {
 ├ *${prefix}quotes* [Query]
 ├ *${prefix}preview* teks|ukuran 
 └ *${prefix}ocr*
+❑ *Anime* 
+└ *${prefix}waifu*
 ⊷⊷⊷⊷⊷⋙᪥⋘⊶⊶⊶⊶⊶
 Tanda Kurung [ ] Hiraukan Contoh :
 *${prefix}play fly away*
