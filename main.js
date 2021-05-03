@@ -582,6 +582,7 @@ break
 case 's':
 case 'stiker':
 case 'sticker':
+case 'sgif':
 if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 //reply(mess.wait)
 if ((isMedia && !msg.message.videoMessage || isTagedImage) && args.length == 0) {
