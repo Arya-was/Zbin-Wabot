@@ -58,6 +58,8 @@ const help = (prefix, copid, tanggal, jams, botname) => {
 ├ *${prefix}preview* teks|ukuran 
 └ *${prefix}ocr*
 ❑ *Anime* 
+├ *${prefix}neko*
+├ *${prefix}loli*
 └ *${prefix}waifu*
 ⊷⊷⊷⊷⊷⋙᪥⋘⊶⊶⊶⊶⊶
 Tanda Kurung [ ] Hiraukan Contoh :
