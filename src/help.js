@@ -62,15 +62,10 @@ const help = (prefix, copid, tanggal, jams, botname) => {
 ├ *${prefix}neko*
 ├ *${prefix}loli*
 └ *${prefix}waifu*
-⊷⊷⊷⊷⊷⋙᪥⋘⊶⊶⊶⊶⊶
-Tanda Kurung [ ] Hiraukan Contoh :
-*${prefix}play fly away*
-
+❏ ❐ ❑ ❒ ❏ ❐ ❏ ❐ ❑ ❒ ❏ ❐
+_Script: https://github.com/Zobin33/Anu-Wabot_
 _Nemuin *Bug🐞?* Ketik *${prefix}bugreport* Untuk Melaporkan Bug!_
-⊷⊷⊷⊷⊷⋙᪥⋘⊶⊶⊶⊶⊶
-⚠️JANGAN SPAM BOT INI !!..
-🏠TETAP DI RUMAH AJA DAN LAKUKAN 3M
-⊷⊷⊷⊷⊷⋙᪥⋘⊶⊶⊶⊶⊶⊶
+❏ ❐ ❑ ❒ ❏ ❐ ❏ ❐ ❑ ❒ ❏ ❐
 `}
 
 exports.help = help
