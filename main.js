@@ -706,7 +706,7 @@ teks = args.join(' ')
 reply(mess.wait)
 const ttno = await axios.get(`https://api.zeks.xyz/api/tiktok/2?url=${teks}&apikey=apivinz`)
 const ini = ttno.data.data.download.download_server_1
-sendFileFromUrl(ini, video)
+sendFileFromUrl(ini, video, {mimetype: 'video/mp4', quoted: msg, filename: `tiktok.mp4`})
 break
 case 'ytmp3':
 if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
