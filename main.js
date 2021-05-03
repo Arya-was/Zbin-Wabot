@@ -884,6 +884,13 @@ case 'waifu':
 const waif = await axios.get('https://waifu.pics/api/sfw/waifu')
 sendFileFromUrl(waif.data.url,image, {quoted: msg, caption: 'nih'})
 break
+case 'loli': 
+sendFileFromUrl('https://lindow-api.herokuapp.com/api/loli?apikey=LindowApi', image, {quoted: msg, caption: 'by https://lindow-api.herokuapp.com'})
+break
+case 'neko':
+const nekk = await axios.get('https://waifu.pics/api/sfw/neko')
+sendFileFromUrl(nekk.data.url,image, {quoted: msg, caption: 'nih'})
+break
 case 'jagokata':
 case 'quote':
 case 'quotes':
