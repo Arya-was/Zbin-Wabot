@@ -698,6 +698,16 @@ result = `❒「  *${botname}*  」
 sendFileFromUrl(a.thumb, image, {caption: result, quoted: msg})
 sendFileFromUrl(a.link, video, { mimetype: 'video/mp4',quoted: msg, filename: `${a.judul}.${a.type}`})
 break
+case 'tiktok':
+if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
+if (args.length < 1) return reply('Url mana su?')
+if (!isUrl(args[0]) && !args[0].includes('tiktok')) return reply(mess.error.Iv)
+teks = args.join(' ')
+reply(mess.wait)
+const ttno = await axios.get(`https://api.zeks.xyz/api/tiktok/2?url=${teks}&apikey=apivinz`)
+const ini = ttno.data.data.download.download_server_1
+sendFileFromUrl(ini, video)
+break
 case 'ytmp3':
 if (!isGroup) return reply('bot tidak bisa melayani privat chat!')
 if (args.length < 1) return reply('Link Nya Mana?')
