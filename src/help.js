@@ -57,6 +57,7 @@ const help = (prefix, copid, tanggal, jams, botname) => {
 ├ *${prefix}quotes* [Query]
 ├ *${prefix}preview* teks|ukuran 
 └ *${prefix}ocr*
+
 ❑ *Anime* 
 ├ *${prefix}neko*
 ├ *${prefix}loli*
