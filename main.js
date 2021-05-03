@@ -879,6 +879,11 @@ reply('_[ ! ] Error Saat Memasuki Web Y2mate_')
 sendFileFromUrl(res[0].link, document, {quoted: msg, mimetype: 'video/mp4', filename: res[0].output})
 }
 break
+// ANIME NYA ICHI NI SAN NYA ARILASO:V
+case 'waifu':
+const waif = await axios.get('https://waifu.pics/api/sfw/waifu')
+sendFileFromUrl(waif.data.url,image, {quoted: msg, caption: 'nih'})
+break
 case 'jagokata':
 case 'quote':
 case 'quotes':
